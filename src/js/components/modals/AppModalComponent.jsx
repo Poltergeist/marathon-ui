@@ -23,6 +23,7 @@ var AppModalComponent = React.createClass({
 
   propTypes: {
     attributes: React.PropTypes.object,
+    edit: React.PropTypes.bool,
     onDestroy: React.PropTypes.func
   },
 
@@ -34,6 +35,7 @@ var AppModalComponent = React.createClass({
         mem: 16.0,
         disk: 0.0
       }).value(),
+      edit: false,
       onDestroy: Util.noop
     };
   },
