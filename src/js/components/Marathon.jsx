@@ -44,7 +44,7 @@ var Marathon = React.createClass({
     }.bind(this));
 
     Mousetrap.bind("c", function () {
-      router.transitionTo("newapp");
+      router.transitionTo(router.getCurrentPathname(), {}, {modal: "newapp"});
     }, "keyup");
 
     Mousetrap.bind("g a", function () {
@@ -60,7 +60,7 @@ var Marathon = React.createClass({
     }.bind(this));
 
     Mousetrap.bind("shift+,", function () {
-      router.transitionTo("about");
+      router.transitionTo(router.getCurrentPathname(), {}, {modal: "about"});
     });
 
     this.startPolling();
