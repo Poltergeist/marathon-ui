@@ -18,8 +18,8 @@ var OptionalSettingsComponent =
   require("../components/OptionalSettingsComponent");
 var ValidationError = require("../validators/ValidationError");
 
-var NewAppModalComponent = React.createClass({
-  displayName: "NewAppModalComponent",
+var AppModalComponent = React.createClass({
+  displayName: "AppModalComponent",
 
   propTypes: {
     attributes: React.PropTypes.object,
@@ -279,4 +279,4 @@ var NewAppModalComponent = React.createClass({
   }
 });
 
-module.exports = NewAppModalComponent;
+module.exports = AppModalComponent;
