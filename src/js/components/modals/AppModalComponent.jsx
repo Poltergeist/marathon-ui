@@ -50,7 +50,7 @@ var AppModalComponent = React.createClass({
     AppsStore.on(AppsEvents.CREATE_APP, this.onCreateApp);
     AppsStore.on(AppsEvents.CREATE_APP_ERROR, this.onCreateAppError);
     AppsStore.on(AppsEvents.APPLY_APP, this.onCreateApp);
-    AppsStore.on(AppsEvents.APPLY_APP_ERROR, this.onCreateAppError);
+    AppsStore.on(AppsEvents.APPLY_APP_ERROR, this.onApplyAppError);
   },
 
   componentWillUnmount: function () {
@@ -61,7 +61,7 @@ var AppModalComponent = React.createClass({
     AppsStore.removeListener(AppsEvents.APPLY_APP,
       this.onCreateApp);
     AppsStore.removeListener(AppsEvents.APPLY_APP_ERROR,
-      this.onCreateAppError);
+      this.onApplyAppError);
   },
 
   onCreateApp: function () {
@@ -76,6 +76,13 @@ var AppModalComponent = React.createClass({
       this.clearValidation();
       this.destroy();
     }
+  },
+
+  onApplyAppError: function (error, fromEdit, status) {
+    if (!fromEdit) {
+      return;
+    }
+    this.onCreateAppError(error, status);
   },
 
   destroy: function () {
@@ -114,7 +121,7 @@ var AppModalComponent = React.createClass({
       errors = [
         new ValidationError(
           "general",
-          "App creation unsuccessful. Check your connection and try again."
+          "App creation unsuccessful. Check your app settings and try again."
         )
       ];
     }
@@ -178,7 +185,7 @@ var AppModalComponent = React.createClass({
     if (appValidator.validate(model) == null) {
       let props = this.props;
       if (props.edit) {
-        AppsActions.applySettingsOnApp(model.id, model);
+        AppsActions.applySettingsOnApp(model.id, model, true);
       } else {
         AppsActions.createApp(model);
       }
