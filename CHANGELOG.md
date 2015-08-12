@@ -12,6 +12,9 @@
 - \#968 - Expose a way to identify "fragile" marathon apps in the web UI
   * If there is a lastTaskFailure this information will be shown in a tab
     called "Last task failure" on the app page.
+- \#808 - Make app configuration fields editable
+  * A selected application version can now be edited
+    by pressing on the "Edit these settings"-button.
 
 ### Changed
 - #124 - Expose all /v2 App attributes in UI
